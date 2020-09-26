@@ -7,7 +7,7 @@
 import re
 from denite.kind.file import Kind as FileKind
 from denite.source.base import Base
-from os.path import relpath
+from os.path import basename
 
 class Source(Base):
 
@@ -47,7 +47,7 @@ class Source(Base):
             return []
         candidates = []
         for item in items:
-            filepath = relpath(item['file'], start=cwd)
+            filepath = basename(item['file'])
             candidates.append({
                 'word': item['message'],
                 'abbr': '%s:%s:%s %s %s' % (filepath, item['lnum'], item['col'], item['severity'], item['message'].replace('\n', ' ')),
